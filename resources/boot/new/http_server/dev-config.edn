@@ -1,0 +1,12 @@
+;; {:salesforce {:client-id "some client id"
+;;
+;;               :client-secret "some client secret"
+;;
+;;               :sftp {:host "ftp.s7.exacttarget.com"
+;;                      :username "some ftp username"
+;;                      :password "some ftp password"}}
+;;
+;;  :aws {:aws-access-key-id "some aws access key id"
+;;        :aws-secret-access-key "some aws secret access key"
+;;        :target-bucket-name "some target aws bucket name"}}
+{}

@@ -1,0 +1,5 @@
+{:dev-config #or [#include "dev-config.edn" {}]
+
+ :webserver {:port #profile {:dev 3000
+                             :test 3000
+                             :prod 80}}}
