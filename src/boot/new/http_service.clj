@@ -17,4 +17,5 @@
              ["src/{{sanitized}}/core.clj" (render "core.clj" data)]
              ["src/{{sanitized}}/web.clj" (render "web.clj" data)]
              ["src/{{sanitized}}/controller.clj" (render "controller.clj" data)]
-             ["test/{{sanitized}}/core_test.clj" (render "core_test.clj" data)])))
+             ["test/{{sanitized}}/core_test.clj" (render "core_test.clj" data)]
+             [".gitignore" (render ".gitignore" data)])))
