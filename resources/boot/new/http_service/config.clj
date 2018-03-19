@@ -10,6 +10,9 @@
 (defn webserver-port [config]
   (get-in config [:webserver :port]))
 
+(defn log-level [config]
+  (get-in config [:log :level]))
+
 ;;
 ;; config/environment plumbing
 ;;

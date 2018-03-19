@@ -1,5 +1,6 @@
 (ns {{name}}.core
-  (:require [{{name}}.web :refer [server]]
+  (:require [{{name}}.config :as config]
+            [{{name}}.web :refer [server]]
             [mount.core :as mount]
             [taoensso.timbre :as log :refer [debug info error]])
   (:gen-class))
@@ -16,5 +17,7 @@
   (set-default-uncaught-exception-handler!)
   (info "starting dependencies!")
   (mount/start)                       ;; start dependencies
+  (log/set-level! (config/log-level config/config))
+  (info "set log level to" (config/log-level config/config))
   (info "starting server!")
   (aleph.netty/wait-for-close server)) ;; start server and block
