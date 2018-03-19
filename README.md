@@ -40,7 +40,7 @@ your-example-service
 
 ## TODO
 
-- [ ] env-based log levels
+- [x] env-based log levels
 - [ ] database layer with migration support
 
 
