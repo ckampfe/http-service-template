@@ -6,6 +6,7 @@
           :dependencies   '[[aero                                          "1.1.3"] ;; config management
                             [aleph                                         "0.4.4"] ;; http server
                             [bidi                                          "2.1.3"] ;; router
+                            [cheshire                                      "5.8.0"] ;; json
                             [com.fzakaria/slf4j-timbre                     "0.3.8"] ;; logging dep
                             [com.taoensso/timbre                          "4.10.0"] ;; logging
                             [mount                                        "0.1.12"] ;; state management

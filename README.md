@@ -11,6 +11,7 @@ A Boot template for a simple HTTP service
 - [aero](https://github.com/juxt/aero) for config management
 - [aleph](https://github.com/ztellman/aleph) for HTTP server
 - [bidi](https://github.com/juxt/bidi) for routing
+- [cheshire](https://github.com/dakrone/cheshire) for JSON
 - [timbre](https://github.com/ptaoussanis/timbre) for logging
 - [mount](https://github.com/tolitius/mount) for state management
 - [ring-defaults](https://github.com/ring-clojure/ring-defaults) for sane HTTP API handling
