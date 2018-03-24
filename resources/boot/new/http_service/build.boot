@@ -12,6 +12,8 @@
                             [mount                                        "0.1.12"] ;; state management
                             [org.clojure/clojure                           "1.9.0"]
                             [ring/ring-defaults                            "0.3.1"] ;; default middleware stack
+                            [ring/ring-json                                "0.4.0"  ;; automatic json handling
+                             :exclusions [cheshire]]
                             [adzerk/boot-test "RELEASE" :scope "test"]])
 
 (task-options!

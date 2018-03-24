@@ -16,7 +16,7 @@
   [& args]
   (set-default-uncaught-exception-handler!)
   (info "starting dependencies!")
-  (mount/start)                       ;; start dependencies
+  (mount/start)
   (log/set-level! (config/log-level config/config))
   (info "set log level to" (config/log-level config/config))
   (info "starting server!")

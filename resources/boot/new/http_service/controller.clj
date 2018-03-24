@@ -4,6 +4,6 @@
             [taoensso.timbre :as log :refer [error info]]))
 
 (defn index [request]
-  {:status 200
-   :headers {"Content-Type" "application/json"}
-   :body (json/encode {:data "ok"})})
+    {:status 200
+     :headers {"Content-Type" "application/json"}
+     :body {:data "ok"}})

@@ -3,15 +3,17 @@
             [bidi.ring :as bidi-ring]
             [mount.core :refer [defstate]]
             [ring.middleware.defaults :refer [api-defaults wrap-defaults]]
+            [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
             [{{name}}.config :as config]
-            [{{name}}.controller :as controller]
-            ))
+            [{{name}}.controller :as controller]))
 
 (def routes ["/" controller/index])
 
 (def handler
   (-> routes
       bidi-ring/make-handler
+      wrap-json-response
+      (wrap-json-body {:keywords? true :bigdecimals? true})
       (wrap-defaults api-defaults)))
 
 (defn start-server!
