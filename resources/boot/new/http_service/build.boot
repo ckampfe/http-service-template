@@ -4,17 +4,26 @@
 (set-env! :resource-paths #{"resources" "src"}
           :source-paths   #{"test"}
           :dependencies   '[[aero                                          "1.1.3"] ;; config management
-                            [aleph                                         "0.4.4"] ;; http server
                             [bidi                                          "2.1.3"] ;; router
                             [cheshire                                      "5.8.0"] ;; json
                             [com.fzakaria/slf4j-timbre                     "0.3.8"] ;; logging dep
                             [com.taoensso/timbre                          "4.10.0"] ;; logging
+                            [hikari-cp                                     "2.4.0"] ;; db connection pooling
+                            [http-kit                                      "2.3.0"] ;; http server
+                            [migratus                                      "1.0.6"] ;; db migrations
                             [mount                                        "0.1.12"] ;; state management
                             [org.clojure/clojure                           "1.9.0"]
+                            [org.clojure/java.jdbc                         "0.7.6"] ;; db jdbc
+                            [org.postgresql/postgresql                    "42.2.2"] ;; pg driver
                             [ring/ring-defaults                            "0.3.1"] ;; default middleware stack
                             [ring/ring-json                                "0.4.0"  ;; automatic json handling
                              :exclusions [cheshire]]
-                            [adzerk/boot-test "RELEASE" :scope "test"]])
+                            [adzerk/boot-test                            "RELEASE" :scope "test"]
+                            [luminus/boot-migratus                         "1.0.1" :scope "test"] ;; db migrations helper
+                            ])
+
+(require '[adzerk.boot-test :refer [test]])
+(require '[luminus.boot-migratus :refer [migratus]])
 
 (task-options!
  aot {:namespace   #{'{{name}}.core}}
@@ -26,7 +35,15 @@
       :license     {"Eclipse Public License"
                     "http://www.eclipse.org/legal/epl-v10.html"}}
  jar {:main        '{{name}}.core
-      :file        (str "{{name}}-" version "-standalone.jar")})
+      :file        (str "{{name}}-" version "-standalone.jar")}
+ migratus {:config {:store :database
+                    :migration-dir "migrations"
+                    :db {:classname "org.postgresql.ds.PGSimpleDataSource"
+                         :subprotocol "postgresql"
+                         :subname "//localhost/postgres"
+                         :user "clark"
+                         ;; :password ""
+                         }}})
 
 (deftask build
   "Build the project locally as a JAR."
@@ -66,5 +83,3 @@
              g/digraph
              lio/view))
       nil)))
-
-(require '[adzerk.boot-test :refer [test]])

@@ -13,6 +13,9 @@
 (defn log-level [config]
   (get-in config [:log :level]))
 
+(defn datasource-options [config]
+  (get-in config [:datasource-options]))
+
 ;;
 ;; config/environment plumbing
 ;;

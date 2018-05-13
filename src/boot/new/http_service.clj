@@ -15,7 +15,9 @@
              ["resources/dev-config.edn" (render "dev-config.edn" data)]
              ["src/{{sanitized}}/config.clj" (render "config.clj" data)]
              ["src/{{sanitized}}/core.clj" (render "core.clj" data)]
+             ["src/{{sanitized}}/db.clj" (render "db.clj" data)]
              ["src/{{sanitized}}/web.clj" (render "web.clj" data)]
              ["src/{{sanitized}}/controller.clj" (render "controller.clj" data)]
              ["test/{{sanitized}}/core_test.clj" (render "core_test.clj" data)]
+             ["README.md" (render "README.md" data)]
              [".gitignore" (render ".gitignore" data)])))

@@ -9,10 +9,13 @@ A Boot template for a simple HTTP service
 ## What you get
 
 - [aero](https://github.com/juxt/aero) for config management
-- [aleph](https://github.com/ztellman/aleph) for HTTP server
 - [bidi](https://github.com/juxt/bidi) for routing
+- [hikari-cp](https://github.com/tomekw/hikari-cp) for database connection pooling
+- [http-kit](https://github.com/http-kit/http-kit) for HTTP server
+- [migratus](https://github.com/yogthos/migratus) for database migrations
 - [timbre](https://github.com/ptaoussanis/timbre) for logging
 - [mount](https://github.com/tolitius/mount) for state management
+- [postgresql](https://www.postgresql.org/) drivers by default
 - [ring-defaults](https://github.com/ring-clojure/ring-defaults) for sane HTTP API handling
 - [ring-json](https://github.com/ring-clojure/ring-json) for automatic JSON serialization/deserialization
 
@@ -31,18 +34,20 @@ your-example-service
 │       ├── config.clj
 │       ├── controller.clj
 │       ├── core.clj
+│       ├── db.clj
 │       └── web.clj
 └── test
     └── your_example_service
         └── core_test.clj
 
-5 directories, 8 files
+5 directories, 9 files
 ```
 
 ## TODO
 
 - [x] env-based log levels
-- [ ] database layer with migration support
+- [x] database layer with migration support
+- [ ] improve config of database migrations
 
 
 ## License

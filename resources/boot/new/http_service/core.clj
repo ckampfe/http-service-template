@@ -1,5 +1,7 @@
 (ns {{name}}.core
-  (:require [{{name}}.config :as config]
+  (:require [clojure.java.jdbc :as jdbc]
+            [{{name}}.config :as config]
+            [{{name}}.db :as db]
             [{{name}}.web :refer [server]]
             [mount.core :as mount]
             [taoensso.timbre :as log :refer [debug info error]])
@@ -14,10 +16,21 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+
   (set-default-uncaught-exception-handler!)
-  (info "starting dependencies!")
-  (mount/start)
+
+  (info "starting service in" (config/load-profile) "environment")
+
+  (info "loading config")
+  (mount/start #'config/config)
+
+  (info "setting log level to" (config/log-level config/config))
   (log/set-level! (config/log-level config/config))
-  (info "set log level to" (config/log-level config/config))
-  (info "starting server!")
-  (aleph.netty/wait-for-close server)) ;; start server and block
+
+  (info "starting rest of dependencies")
+  (mount/start)
+
+  (let [test-query "SELECT 1"]
+    (info "running test query:" test-query)
+    (jdbc/with-db-connection [conn {:datasource db/datasource}]
+      (pr-str (jdbc/query conn test-query)))))

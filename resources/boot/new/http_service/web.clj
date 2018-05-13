@@ -1,9 +1,10 @@
 (ns {{name}}.web
-  (:require [aleph.http :as http]
-            [bidi.ring :as bidi-ring]
+  (:require [bidi.ring :as bidi-ring]
             [mount.core :refer [defstate]]
+            [org.httpkit.server :as http]
             [ring.middleware.defaults :refer [api-defaults wrap-defaults]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
+            [taoensso.timbre :as log :refer [info]]
             [{{name}}.config :as config]
             [{{name}}.controller :as controller]))
 
@@ -19,8 +20,10 @@
 (defn start-server!
   "Starts an HTTP server using the provided Ring `handler`."
   [config]
-  (http/start-server handler {:port (config/webserver-port config)}))
+  (let [port (config/webserver-port config)]
+    (info "Starting server on port" port)
+    (http/run-server handler {:port port})))
 
 (defstate server
   :start (start-server! config/config)
-  :stop (.close server))
+  :stop (server :timeout 100))
