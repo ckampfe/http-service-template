@@ -10,16 +10,34 @@
 
 (defn request-response-logger [handler]
   (fn [request]
-    (debug request)
-    (let [start (java.time.Instant/now)
-          response (handler request)
-          end (java.time.Instant/now)]
-      (info "HTTP"
-            (:status response)
-            "-"
-            (.toMillis (java.time.Duration/between start end))
-            "millis")
-      response)))
+    (let [start (System/currentTimeMillis)
+          id (rand-int 0xffff)]
+      (try
+        (debug request)
+        (let [response (handler request)
+              end (System/currentTimeMillis)]
+
+          (info id
+                "-"
+                "HTTP"
+                (:status response)
+                "-"
+                (- end start)
+                "millis")
+
+          response)
+
+        (catch Throwable t
+          (let [end (System/currentTimeMillis)]
+            (error "Uncaught exception processing request:"
+                   id
+                   "-"
+                   "HTTP"
+                   "-"
+                   (- end start)
+                   "millis")
+            (error id "-" t)
+            (throw t)))))))
 
 (defn not-found [request]
   {:status 404
