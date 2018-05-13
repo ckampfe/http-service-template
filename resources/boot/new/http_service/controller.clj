@@ -1,9 +1,10 @@
 (ns {{name}}.controller
   (:require [{{name}}.config :as config]
             [cheshire.core :as json]
-            [taoensso.timbre :as log :refer [error info]]))
+            [taoensso.timbre :as log :refer [debug error info]]))
 
 (defn index [request]
-    {:status 200
-     :headers {"Content-Type" "application/json"}
-     :body {:data "ok"}})
+  (debug request)
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body {:data "ok"}})
