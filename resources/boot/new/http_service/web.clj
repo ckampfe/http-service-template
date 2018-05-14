@@ -4,7 +4,7 @@
             [org.httpkit.server :as http]
             [ring.middleware.defaults :refer [api-defaults wrap-defaults]]
             [ring.middleware.json :refer [wrap-json-body wrap-json-response]]
-            [taoensso.timbre :as log :refer [debug info]]
+            [taoensso.timbre :as log :refer [debug error info]]
             [{{name}}.config :as config]
             [{{name}}.controller :as controller]))
 
